@@ -91,7 +91,24 @@
                 </div>
             </div>
         </div>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div>
+            <form method="post" action="/signup">
+                <input name="firstname" value="" type="firstname"/>
+                <input name="lastname" value="" type="lastname"/>
+                <input name="email" value="" type="email"/>
+                <input name="password" value="" type="password"/>
+                <button type="submit">Submit</button>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            </form>
             <form method="post" action="/login">
                 <input name="email" value="" type="email"/>
                 <input name="password" value="" type="password"/>
