@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/admin', 'AdminController@index')->name('index');
+Route::post('/add_to_list', 'AdminController@addToList')->name('add_to_list');
+
