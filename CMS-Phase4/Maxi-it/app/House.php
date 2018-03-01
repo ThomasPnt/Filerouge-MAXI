@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class House extends Model
 {
+    protected $fillable = ['address','nbRoom','free','type'];
     public function refugee()
     {
         return $this->hasOne('App\Refugee');

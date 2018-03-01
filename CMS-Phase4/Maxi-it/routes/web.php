@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/addHouse','HouseController@AddHouse')->name('addHouse');
+
+Route::post('/update', 'HostController@Update')->name('update');
+Route::post('/login', 'HostController@Login')->name('login');
+Route::post('/signup', 'HostController@SignUp')->name('signup');
+Route::get('/host','HostController@index')->name('host');
+

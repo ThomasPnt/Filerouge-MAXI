@@ -5,20 +5,38 @@ namespace App\Http\Controllers;
 use App\Host;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class HostController extends Controller
 {
-    public function Login(){
-        $loginForm = Request::all();
-        if (Auth::attempt(['email' => $loginForm->$email, 'password' => $loginForm->$password])) {
-            // Log reussi...
-            return "You're logged";
+    public function Login(Request $request){
+        $email = $request->input('email');
+        $host = Host::where('email', $email)->first();
+        $pass = $request->input('password');
+        if($host->password === $pass){
+            session()->put('logged',true);
+            session()->put('id',$host->id);
+            echo "connected";
+            var_dump("id : " . session('id'));
+            return redirect("/");
+        } else {
+            return 'Looser';
         }
     }
 
+    public function LogOut(Request $request){
+        $request->session()->flush();
+    }
+
+    public function Update(Request $request){
+        echo "update";
+        $host = Host::where('id', session('id'));
+        $host->update($request->except('_token'));
+    }
+
     public function SignUp(){
-        $userFormData = Request::all();
-        $rules = [
+        $userFormData = input::all();
+        /*$rules = [
             'firstname' => 'required',
             'lastname' => 'required',
             'email' => 'required|email',
@@ -27,11 +45,7 @@ class HostController extends Controller
         $validation = Validator::make($userFormData,$rules);
         if($validation->fails()){
             return 'error';
-        }
+        }*/
         $host = Host::create($userFormData);
-    }
-
-    public function Update(){
-
     }
 }
