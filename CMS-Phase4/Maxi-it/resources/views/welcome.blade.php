@@ -115,14 +115,26 @@
                 <button type="submit">Submit</button>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </form>
-            <form method="post" action="/update">
+           {{-- <form method="post" action="/update">
                 <input name="firstname" value="" type="firstname"/>
                 <input name="lastname" value="" type="lastname"/>
                 <input name="email" value="" type="email"/>
                 <input name="password" value="" type="password"/>
                 <button type="submit">Submit</button>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            </form>--}}
+            <form method="post" action="/addHouse">
+                <input name="address" type="text" value="">
+                <input name="nbRoom" type="number" value="">
+                <input name="free" type="checkbox" checked value={{true}}>
+                <select name="type">
+                    <option value="appartement">appartement</option>
+                    <option value="maison">maison</option>
+                </select>
+                <button type="submit">Submit</button>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </form>
+            <button><a href="/delete">Delete</a></button>
         </div>
     </body>
 </html>

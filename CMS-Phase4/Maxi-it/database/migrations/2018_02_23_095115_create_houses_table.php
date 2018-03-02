@@ -15,9 +15,9 @@ class CreateHousesTable extends Migration
     {
         Schema::create('houses', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('hosts');
-            $table->integer('refugee_id')->unsigned();
+            $table->integer('host_id')->unsigned()->unique();
+            $table->foreign('host_id')->references('id')->on('hosts');
+            $table->integer('refugee_id')->unsigned()->nullable();
             $table->foreign('refugee_id')->references('id')->on('houses');
             $table->string('address');
             $table->integer('nbRoom');

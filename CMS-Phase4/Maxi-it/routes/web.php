@@ -16,6 +16,9 @@ Route::get('/', function () {
 });
 
 Route::post('/addHouse','HouseController@AddHouse')->name('addHouse');
+Route::get('/getAll','HouseController@getAll')->name('getAll');
+Route::get('/delete','HouseController@Delete')->name('delete');
+Route::post('/update','HouseController@Update')->name('update');
 
 Route::post('/update', 'HostController@Update')->name('update');
 Route::post('/login', 'HostController@Login')->name('login');
