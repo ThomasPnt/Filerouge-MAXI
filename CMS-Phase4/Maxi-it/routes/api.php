@@ -17,6 +17,4 @@ use Illuminate\Http\Request;
     return $request->user();
 });*/
 
-Route::get('/admin', 'AdminController@index')->name('index');
-Route::post('/addList', 'AdminController@addToList')->name('add_to_list');
 

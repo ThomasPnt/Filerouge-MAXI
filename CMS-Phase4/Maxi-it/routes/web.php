@@ -14,3 +14,10 @@
 Route::get('/admin', 'AdminController@index')->name('index');
 Route::post('/add_to_list', 'AdminController@addToList')->name('add_to_list');
 
+Route::post('/addHouse','HouseController@AddHouse')->name('addHouse');
+
+Route::post('/update', 'HostController@Update')->name('update');
+Route::post('/login', 'HostController@Login')->name('login');
+Route::post('/signup', 'HostController@SignUp')->name('signup');
+Route::get('/host','HostController@index')->name('host');
+
