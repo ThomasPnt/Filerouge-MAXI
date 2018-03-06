@@ -71,7 +71,6 @@
          <div class="Maxi"><a href='index.php?action=home'>Maxi</a></div>
          <ul>
             <li><a href='index.php?action=logout'>Logout</a></li>
-            <li class='active'><a href='index.php?action=uploadPage'>Upload</a>
             <li><a href='index.php?action=admin'>Profile</a></li>
          </ul>
       </div>

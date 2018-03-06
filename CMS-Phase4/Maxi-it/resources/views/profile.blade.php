@@ -4,18 +4,14 @@
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Créer votre compte Maxi - Maxi</title>
+      <title>Vos options - Maxi</title>
       <!-- Fonts -->
       <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
       <!-- Styles -->
       <style>
-        html{
-            width: 100%;
-            height: 100%;
-        }
          .login-page {
          width: 360px;
-         padding: 8% 0 0;
+         padding: 3% 0 0;
          margin: auto;
          }
          .form {
@@ -65,9 +61,6 @@
          color: #ebb256;
          text-decoration: none;
          }
-         .form .login-form {
-         display: none;
-         }
          .container {
          position: relative;
          z-index: 1;
@@ -107,23 +100,70 @@
          -webkit-font-smoothing: antialiased;
          -moz-osx-font-smoothing: grayscale;      
          }
+         select {
+         font-family: "Arial", sans-serif;
+         outline: 0;
+         color: #ebb256;
+         background: #2d383b;
+         width: 100%;
+         border: 0;
+         margin: 0 0 15px;
+         padding: 15px;
+         box-sizing: border-box;
+         font-size: 14px;  
+         }
+         a {
+         text-decoration: none;
+         color: white;
+         }
+         h1 {
+         font-family: "Arial", sans-serif;
+         outline: 0s;
+         color: #ebb256;
+         width: 100%;
+         margin: 0 0 15px;
+         padding: 15px;
+         box-sizing: border-box;
+         font-size: 18px;
+         }
       </style>
-   </head>
-   <body>
-      <div>
+      <!-- N°1 -->
       <div class="login-page">
          <div class="form">
-            <form method="post" action="/signup">
-               <input name="firstname" placeholder="Prénom" type="firstname">
-               <input name="lastname" placeholder="Nom" type="lastname">
+            <h1>Update Information Host</h1>
+            <form method="post" action="/update">
+               <input name="firstname" placeholder="Prénom" type="firstname"/>
+               <input name="lastname" placeholder="Nom" type="lastname"/>
                <input name="email" placeholder="E-mail" type="email"/>
-               <input name="password" placeholder="Mot de passe" type="password">
-               <button type="submit">S'inscrire</button>
+               <input name="password" placeholder="Mot de passe" type="password"/>
+               <button type="submit">Valider</button>
                <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </form>
-            <p class="message">Déjà inscrit ? <a href="index.php?action=login">Se connecter</a></p>
          </div>
       </div>
-   </body>
+      <!-- N°2 -->
+      <div class="login-page">
+         <div class="form">
+            <h1>Add a House</h1>
+            <form method="post" action="/addHouse">
+               <input name="address" type="text" placeholder="Adresse">
+               <input name="nbRoom" type="number" placeholder="Nombre de pièce">
+               <select name="type">
+                  <option value="appartement">Appartement</option>
+                  <option value="maison">Maison</option>
+               </select>
+               <button type="submit">Valider</button>
+               <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            </form>
+         </div>
+      </div>
+      <!-- N°3 -->
+      <div class="login-page">
+         <div class="form">
+            <h1>Delete Button on Profil Host</h1>
+            <button type="submit"><a href="/delete">Delete</a></button>
+         </div>
+      </div>
+      </body>
 </html>
 
