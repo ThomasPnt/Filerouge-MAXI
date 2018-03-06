@@ -2,19 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Refugee;
 use Illuminate\Http\Request;
 
 class RefugeeController extends Controller
 {
     public function addToList(Request $request)
     {
-        var_dump($request);
-        return "1";
+        $data = $request->all();
+
+        //Verifications
+        $data['nbAdult'] = intval($data['nbAdult'] );
+        $data['nbChild'] = intval($data['nbChild'] );
+        if (array_key_exists('accommodation', $data)) {
+            $data['accommodation'] = true;
+        } else {
+            $data['accommodation'] = false;
+        }
+
+        $this->validate($request, [
+            'contactName' => 'required',
+            'nbAdult' => 'required|integer',
+            'nbChild' => 'required|integer',
+        ]);
+
+        Refugee::create($data);
     }
 
-    public function removeFromList()
+    public function removeFromList($id)
     {
-        return "2";
+        $refugee = Refugee::find($id);
+        $refugee->delete();
     }
 
     public function editInfos()

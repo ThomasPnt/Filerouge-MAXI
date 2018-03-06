@@ -2,27 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin;
 use App\Refugee;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\View;
 use Validator;
 
 class AdminController extends Controller
 {
-    public function addToList(Request $request)
+    public function index(Request $request)
     {
-        $data = Input::all();
-        $refugee = Refugee::create($data);
-
-        /*$request->validate( [
-            'contactName' => 'required',
-            'nbAdult' => 'required|integer',
-            'nbChild' => 'required|integer',
-            'accomodation' => 'required|boolean',
-        ]);*/
-
-        echo $refugee->contactName;
+        if ($request->isMethod('post')) {
+            $pseudo = $request->input('pseudo');
+            $admin = Admin::where('pseudo', $pseudo)->first();
+            $pass = $request->input('password');
+            if (password_verify($pass, $admin->password)) {
+                session()->put('isAdmin', true);
+                return redirect("dashboard");
+            } else {
+                return redirect("adminLogin");
+            }
+        } else if ($request->isMethod('get')) {
+            return View::make('admin.index');
+        }
     }
+
+    public function dashboard()
+    {
+        $refugeeList = Refugee::all();
+        return view('admin.dashboard',['refugeeList' => $refugeeList]);
+    }
+
 
     public function removeFromList()
     {
@@ -34,8 +45,5 @@ class AdminController extends Controller
         return "3";
     }
 
-    public function index()
-    {
-        return "4";
-    }
+
 }
