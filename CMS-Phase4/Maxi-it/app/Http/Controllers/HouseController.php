@@ -16,7 +16,6 @@ class HouseController extends Controller
         $this->validate($request, [
             "address" => 'required',
             "nbRoom" => 'required|integer',
-            "free" => 'required|boolean',
             "type" => 'required'
         ]);
         $house = new House();
@@ -28,6 +27,7 @@ class HouseController extends Controller
         $house->type = $request['type'];
         try {
             $house->save();
+            return redirect("/");
         } catch (\Exception $e) {
             return redirect("/");
         }
@@ -43,6 +43,7 @@ class HouseController extends Controller
     {
         $host = Host::find(session('id'));
         $host->house()->delete();
+        return redirect("/profile");
     }
 
     public function Update(Request $request)

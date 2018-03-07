@@ -10,8 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function(\Illuminate\Http\Request $request) {
+/*Route::get('/', function(\Illuminate\Http\Request $request) {
     echo Hash::make('test');
+});*/
+
+use Illuminate\Support\Facades\DB;
+
+Route::get('/', function(){
+    return view('welcome');
 });
 
 Route::get('/login', function(){
@@ -26,7 +32,10 @@ Route::get('/profile', function(){
     return view('profile');
 });
 
-
+Route::get('/house', function(){
+    $haveHouse = DB::select('select * from houses where host_id = :id',['id'=> session('id')]);
+    return view('house',['haveHouse'=> $haveHouse]);
+});
 
 
 /*Route::view('/', 'refugees.add');*/
@@ -44,12 +53,11 @@ Route::post('/update','HouseController@Update')->name('update');
 Route::any('/link/{house?}', 'HouseController@link')->name('link');
 Route::get('/unlink/{house?}', 'HouseController@unlink')->name('unlink');
 
-Route::post('/update', 'HostController@Update')->name('update');
 Route::get('/host','HostController@index')->name('host');
 Route::post('/login', 'HostController@Login')->name('login');
 Route::post('/signup', 'HostController@SignUp')->name('signup');
 Route::get('/host','HostController@index')->name('host');
 Route::get('/logout', 'HostController@LogOut')->name('logout');
-Route::post('/update', 'HostController@Update')->name('update');
+Route::post('/updateHost', 'HostController@Update')->name('updateHost');
 
 Route::post('/add_to_list', 'RefugeeController@addToList')->name('addToList');

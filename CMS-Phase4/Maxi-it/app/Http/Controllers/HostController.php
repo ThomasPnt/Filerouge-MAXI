@@ -18,14 +18,13 @@ class HostController extends Controller
             session()->put('id', $host->id);
             echo "connected";
             return redirect("/");
-        } else {
-            return 'Looser';
         }
     }
 
     public function LogOut(Request $request)
     {
         $request->session()->flush();
+        return redirect("/");
     }
 
     public function Update(Request $request)
@@ -33,6 +32,7 @@ class HostController extends Controller
         echo "update";
         $host = Host::where('id', session('id'));
         $host->update($request->except('_token'));
+        return redirect("/profile");
     }
 
     public function SignUp(Request $request)
@@ -47,5 +47,6 @@ class HostController extends Controller
         $validHost = $request->all();
         $validHost['password'] = Hash::make($validHost['password']);
         $host = Host::create($validHost);
+        return redirect("/login");
     }
 }
