@@ -18,6 +18,8 @@ class HostController extends Controller
             session()->put('id', $host->id);
             echo "connected";
             return redirect("/");
+        } else {
+            dd("joli");
         }
     }
 
@@ -27,7 +29,7 @@ class HostController extends Controller
         return redirect("/");
     }
 
-    public function Update(Request $request)
+    public function UpdateHost(Request $request)
     {
         echo "update";
         $host = Host::where('id', session('id'));

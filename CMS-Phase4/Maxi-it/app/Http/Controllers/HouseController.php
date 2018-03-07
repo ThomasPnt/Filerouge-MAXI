@@ -44,9 +44,10 @@ class HouseController extends Controller
         $host = Host::find(session('id'));
         $host->house()->delete();
         return redirect("/profile");
+        dd('test');
     }
 
-    public function Update(Request $request)
+   /* public function Update(Request $request)
     {
         if (!session('isAdmin')) {
             $house = House::where('host_id', session('id'));
@@ -67,7 +68,7 @@ class HouseController extends Controller
         $house->fill($request->except('_token','houseId'))->save();
         return redirect("dashboard");*/
 
-    }
+   /* }*/
 
     public function link(Request $request, House $house)
     {

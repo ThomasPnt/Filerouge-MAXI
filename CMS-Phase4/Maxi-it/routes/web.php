@@ -14,7 +14,9 @@
     echo Hash::make('test');
 });*/
 
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 Route::get('/', function(){
     return view('welcome');
@@ -28,13 +30,19 @@ Route::get('/signup', function(){
     return view('signup');
 });
 
-Route::get('/profile', function(){
-    return view('profile');
-});
 
-Route::get('/house', function(){
-    $haveHouse = DB::select('select * from houses where host_id = :id',['id'=> session('id')]);
-    return view('house',['haveHouse'=> $haveHouse]);
+Route::group(['middleware' => 'isAuth'],function() {
+
+    Route::get('/profile', function(){
+        $infoProfile = DB::select('select * from hosts where id = :id',['id'=> session('id')]);
+        return view('profile', ['infoProfile' => $infoProfile]);
+    });
+
+    Route::get('/house', function(){
+        $haveHouse = DB::select('select * from houses where host_id = :id',['id'=> session('id')]);
+        return view('house',['haveHouse'=> $haveHouse]);
+    });
+
 });
 
 
@@ -56,8 +64,7 @@ Route::get('/unlink/{house?}', 'HouseController@unlink')->name('unlink');
 Route::get('/host','HostController@index')->name('host');
 Route::post('/login', 'HostController@Login')->name('login');
 Route::post('/signup', 'HostController@SignUp')->name('signup');
-Route::get('/host','HostController@index')->name('host');
 Route::get('/logout', 'HostController@LogOut')->name('logout');
-Route::post('/updateHost', 'HostController@Update')->name('updateHost');
+Route::post('/updateHost', 'HostController@UpdateHost')->name('updateHost');
 
 Route::post('/add_to_list', 'RefugeeController@addToList')->name('addToList');
