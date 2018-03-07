@@ -1,4 +1,4 @@
-<!doctype html>
+{{--<!doctype html>
 <html lang="{{ app()->getLocale() }}">
    <head>
       <meta charset="utf-8">
@@ -98,20 +98,23 @@
          background: #272f31; /* fallback for old browsers */
          font-family: "Arial", sans-serif;
          -webkit-font-smoothing: antialiased;
-         -moz-osx-font-smoothing: grayscale;      
+         -moz-osx-font-smoothing: grayscale;
          }
-      </style>
-      <div class="login-page">
-         <div class="form">
-         <form method="post" action="/login">
-         <input name="email" placeholder="E-mail" type="email"/>
-         <input name="password" placeholder="Mot de passe" type="password"/>
-         <button type="submit">Se connecter</button>
-         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-               <p class="message">Pas encore inscrit ? <a href="index.php?action=signup">Créer votre compte</a></p>
+      </style>--}}
+@extends('main')
+@section('content')
+    <div class="login-page">
+        <div class="form">
+            <form method="post" action="/login">
+                <input name="email" placeholder="E-mail" type="email"/>
+                <input name="password" placeholder="Mot de passe" type="password"/>
+                <button type="submit">Se connecter</button>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <p class="message">Pas encore inscrit ? <a href="/signup">Créer votre compte</a></p>
             </form>
-         </div>
-      </div>
-      </body>
-</html>
+        </div>
+    </div>
+@stop
+{{--      </body>
+</html>--}}
 
