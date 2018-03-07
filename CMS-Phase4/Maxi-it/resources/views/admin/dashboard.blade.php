@@ -127,7 +127,7 @@
                             <td>{{ $house->type}}</td>
                             <td>{{ $house->free ? "yes" : "no"}}</td>
                             <td>
-                                <a href="">edit</a>
+                                <a href="/updateHouse/{{$house->id}}">edit</a>
                                 <a href="">remove</a>
                                 @if ($house->free)
                                     <a href="link/{{$house->id}}">link</a>

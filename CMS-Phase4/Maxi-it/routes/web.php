@@ -40,16 +40,15 @@ Route::any('/adminLogin', 'AdminController@index')->name('index');
 Route::post('/addHouse','HouseController@AddHouse')->name('addHouse');
 Route::get('/getAll','HouseController@getAll')->name('getAll');
 Route::get('/delete','HouseController@Delete')->name('delete');
-Route::post('/update','HouseController@Update')->name('update');
+Route::any('/updateHouse/{houseGet?}','HouseController@Update')->name('update');
 Route::any('/link/{house?}', 'HouseController@link')->name('link');
 Route::get('/unlink/{house?}', 'HouseController@unlink')->name('unlink');
 
-Route::post('/update', 'HostController@Update')->name('update');
 Route::get('/host','HostController@index')->name('host');
 Route::post('/login', 'HostController@Login')->name('login');
 Route::post('/signup', 'HostController@SignUp')->name('signup');
 Route::get('/host','HostController@index')->name('host');
 Route::get('/logout', 'HostController@LogOut')->name('logout');
-Route::post('/update', 'HostController@Update')->name('update');
+Route::post('/updateHost', 'HostController@Update')->name('updateHost');
 
 Route::post('/add_to_list', 'RefugeeController@addToList')->name('addToList');

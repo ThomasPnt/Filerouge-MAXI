@@ -16,7 +16,6 @@ class HouseController extends Controller
         $this->validate($request, [
             "address" => 'required',
             "nbRoom" => 'required|integer',
-            "free" => 'required|boolean',
             "type" => 'required'
         ]);
         $house = new House();
@@ -45,7 +44,7 @@ class HouseController extends Controller
         $host->house()->delete();
     }
 
-    public function Update(Request $request)
+    public function Update(Request $request,House $houseGet)
     {
         if (!session('isAdmin')) {
             $house = House::where('host_id', session('id'));
@@ -54,17 +53,16 @@ class HouseController extends Controller
         }
         elseif (session('isAdmin')){
             if ($request->isMethod('post')) {
-
+                echo "tyest";
             }
             elseif($request->isMethod('get')) {
-
+                return view('houses.editAdmin', ['house' => $houseGet]);
             }
 
         }
-
-       /* $house = House::find($request->houseId);
+        $house = House::find($request->houseId);
         $house->fill($request->except('_token','houseId'))->save();
-        return redirect("dashboard");*/
+        return redirect("dashboard");
 
     }
 
