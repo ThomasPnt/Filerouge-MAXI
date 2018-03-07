@@ -78,8 +78,8 @@
     <div class="Maxi"><a href='/'>Maxi</a></div>
     <ul>
         @if(session('id'))
-            <li><a href="/profile">Profile</a></li>
             <li><a href='/logout'>Logout</a></li>
+            <li><a href="/profile">Profile</a></li>
             <li><a href='/house'>House</a></li>
         @else
             <li><a href="/signup">Sign Up</a></li>
