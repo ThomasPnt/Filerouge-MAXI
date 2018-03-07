@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\Host;
+use App\House;
 use App\Refugee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -31,18 +33,20 @@ class AdminController extends Controller
     public function dashboard()
     {
         $refugeeList = Refugee::all();
-        return view('admin.dashboard',['refugeeList' => $refugeeList]);
+        $houseList = House::all();
+        $hostList = Host::all();
+        return view('admin.dashboard',[
+            'refugeeList' => $refugeeList,
+            'houseList' => $houseList,
+            'hostList' => $hostList]);
     }
 
 
-    public function removeFromList()
+    public function LogOut(Request $request)
     {
-        return "5";
-    }
+        $request->session()->flush();
+        return redirect("adminLogin");
 
-    public function editInfos()
-    {
-        return "3";
     }
 
 

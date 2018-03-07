@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Host;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Hash;
 
 class HostController extends Controller
 {
@@ -13,7 +13,7 @@ class HostController extends Controller
         $email = $request->input('email');
         $host = Host::where('email', $email)->first();
         $pass = $request->input('password');
-        if ($host->password === $pass) {
+        if (password_verify($pass, $host->password)) {
             session()->put('logged', true);
             session()->put('id', $host->id);
             echo "connected";
@@ -45,6 +45,7 @@ class HostController extends Controller
             'password' => 'required'
         ]);
         $validHost = $request->all();
+        $validHost['password'] = Hash::make($validHost['password']);
         $host = Host::create($validHost);
     }
 }

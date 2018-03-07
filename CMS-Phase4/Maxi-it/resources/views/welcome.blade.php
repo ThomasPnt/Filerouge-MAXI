@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Maxi-it</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -65,32 +65,6 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-           {{-- @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif--}}
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -101,6 +75,7 @@
             </div>
         @endif
         <div>
+            <h1>Sign Up Host</h1>
             <form method="post" action="/signup">
                 <input name="firstname" value="" type="firstname"/>
                 <input name="lastname" value="" type="lastname"/>
@@ -109,12 +84,14 @@
                 <button type="submit">Submit</button>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </form>
+            <h1>Login</h1>
             <form method="post" action="/login">
                 <input name="email" value="" type="email"/>
                 <input name="password" value="" type="password"/>
                 <button type="submit">Submit</button>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </form>
+            <h1>Update Information Host</h1>
             <form method="post" action="/update">
                 <input name="firstname" value="" type="firstname"/>
                 <input name="lastname" value="" type="lastname"/>
@@ -123,6 +100,20 @@
                 <button type="submit">Submit</button>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </form>
+            <h1>Add an House</h1>
+            <form method="post" action="/addHouse">
+                <input name="address" type="text" value="">
+                <input name="nbRoom" type="number" value="">
+                <input name="free" type="checkbox" checked value={{true}}>
+                <select name="type">
+                    <option value="appartement">appartement</option>
+                    <option value="maison">maison</option>
+                </select>
+                <button type="submit">Submit</button>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            </form>
+            <h1>Delete Button on Profil Host</h1>
+            <button><a href="/delete">Delete</a></button>
         </div>
     </body>
 </html>
