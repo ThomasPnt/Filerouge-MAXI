@@ -14,6 +14,18 @@ Route::get('/', function(\Illuminate\Http\Request $request) {
     echo Hash::make('test');
 });
 
+Route::get('/login', function(){
+    return view('login');
+});
+
+Route::get('/signup', function(){
+    return view('signup');
+});
+
+Route::get('/profile', function(){
+    return view('profile');
+});
+
 
 
 
@@ -36,6 +48,8 @@ Route::post('/update', 'HostController@Update')->name('update');
 Route::get('/host','HostController@index')->name('host');
 Route::post('/login', 'HostController@Login')->name('login');
 Route::post('/signup', 'HostController@SignUp')->name('signup');
+Route::get('/host','HostController@index')->name('host');
+Route::get('/logout', 'HostController@LogOut')->name('logout');
 Route::post('/update', 'HostController@Update')->name('update');
 
 Route::post('/add_to_list', 'RefugeeController@addToList')->name('addToList');

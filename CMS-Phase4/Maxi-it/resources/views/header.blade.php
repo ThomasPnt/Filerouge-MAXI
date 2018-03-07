@@ -68,11 +68,10 @@
    </head>
    <body>
       <div id='cssmenu'>
-         <div class="Maxi"><a href='index.php?action=home'>Maxi</a></div>
+         <div class="Maxi"><a href='/'>Maxi</a></div>
          <ul>
-            <li><a href='index.php?action=logout'>Logout</a></li>
-            <li class='active'><a href='index.php?action=uploadPage'>Upload</a>
-            <li><a href='index.php?action=admin'>Profile</a></li>
+            <li><a href='/logout'>Logout</a></li>
+            <li><a href='/profile'>Profile</a></li>
          </ul>
       </div>
    </body>

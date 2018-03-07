@@ -1,4 +1,4 @@
-<!doctype html>
+{{--<!doctype html>
 <html lang="{{ app()->getLocale() }}">
    <head>
       <meta charset="utf-8">
@@ -9,6 +9,10 @@
       <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
       <!-- Styles -->
       <style>
+        html{
+            width: 100%;
+            height: 100%;
+        }
          .login-page {
          width: 360px;
          padding: 8% 0 0;
@@ -105,21 +109,24 @@
          }
       </style>
    </head>
-   <body>
-      <div>
-      <div class="login-page">
-         <div class="form">
-            <form method="post" action="/signup">
-               <input name="firstname" placeholder="Prénom" type="firstname">
-               <input name="lastname" placeholder="Nom" type="lastname">
-               <input name="email" placeholder="E-mail" type="email"/>
-               <input name="password" placeholder="Mot de passe" type="password">
-               <button type="submit">S'inscrire</button>
-               <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </form>
-            <p class="message">Déjà inscrit ? <a href="index.php?action=login">Se connecter</a></p>
-         </div>
-      </div>
-   </body>
-</html>
+   <body>--}}
+@extends('main')
+@section('content')
+    <div>
+        <div class="login-page">
+            <div class="form">
+                <form method="post" action="/signup">
+                    <input name="firstname" placeholder="Prénom" type="firstname">
+                    <input name="lastname" placeholder="Nom" type="lastname">
+                    <input name="email" placeholder="E-mail" type="email"/>
+                    <input name="password" placeholder="Mot de passe" type="password">
+                    <button type="submit">S'inscrire</button>
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                </form>
+                <p class="message">Déjà inscrit ? <a href="index.php?action=login">Se connecter</a></p>
+            </div>
+        </div>
+@stop
+{{--   </body>
+</html>--}}
 
