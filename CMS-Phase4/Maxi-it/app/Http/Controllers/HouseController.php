@@ -44,31 +44,38 @@ class HouseController extends Controller
         $host = Host::find(session('id'));
         $host->house()->delete();
         return redirect("/profile");
-        dd('test');
     }
 
-   /* public function Update(Request $request)
+    public function UpdateHouse(Request $request)
     {
-        if (!session('isAdmin')) {
-            $house = House::where('host_id', session('id'));
-            $house->free = !$house->free;
-            $house->save();
-        }
-        elseif (session('isAdmin')){
-            if ($request->isMethod('post')) {
+        $house = House::where('host_id', session('id'));
+        $house->update($request->except('_token'));
+        return redirect("/house");
+    }
 
-            }
-            elseif($request->isMethod('get')) {
+    /* public function Update(Request $request)
+     {
+         if (!session('isAdmin')) {
+             $house = House::where('host_id', session('id'));
+             $house->free = !$house->free;
+             $house->save();
+         }
+         elseif (session('isAdmin')){
+             if ($request->isMethod('post')) {
 
-            }
+             }
+             elseif($request->isMethod('get')) {
 
-        }
+             }
 
-       /* $house = House::find($request->houseId);
-        $house->fill($request->except('_token','houseId'))->save();
-        return redirect("dashboard");*/
+         }
 
-   /* }*/
+        /* $house = House::find($request->houseId);
+         $house->fill($request->except('_token','houseId'))->save();
+         return redirect("dashboard");*/
+
+    /* }*/
+
 
     public function link(Request $request, House $house)
     {

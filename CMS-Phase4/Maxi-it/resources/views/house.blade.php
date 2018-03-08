@@ -19,7 +19,7 @@
     @else
         <div>
             <div class="form">
-                <form action="">
+                <form method="post" action="/updateHouse">
                     <input name="address" type="text" placeholder="Adresse" value={{$haveHouse[0]->address}}>
                     <input name="nbRoom" type="number" placeholder="Nombre de pièce" value={{$haveHouse[0]->nbRoom}}>
                     <select name="type">
