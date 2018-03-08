@@ -75,7 +75,7 @@
     </div>
 @endif
 <div>
-    <form method="post" action="/add_to_list">
+    <form method="post" action="/addtolist">
         <input name="contactName" value="" type="text"/>
         <input name="nbAdult" value="" type="number"/>
         <input name="nbChild" value="" type="number"/>
@@ -83,6 +83,7 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <button type="submit">Submit</button>
     </form>
+    <a class="btn btn-primary" href="/dashboard">Back</a>
 </div>
 </body>
 </html>

@@ -21,7 +21,7 @@ class HostController extends Controller
             echo "connected";
             return redirect("/");
         } else {
-            $errors = "try again";
+            $errors = "Password is not correct";
             return redirect()->back()->withErrors($errors)->withInput();
         }
     }

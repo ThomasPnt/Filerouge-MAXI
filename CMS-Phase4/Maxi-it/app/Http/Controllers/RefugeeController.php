@@ -9,24 +9,31 @@ class RefugeeController extends Controller
 {
     public function addToList(Request $request)
     {
-        $data = $request->all();
+        if ($request->isMethod('post')) {
+            $data = $request->all();
 
-        //Verifications
-        $data['nbAdult'] = intval($data['nbAdult'] );
-        $data['nbChild'] = intval($data['nbChild'] );
-        if (array_key_exists('accommodation', $data)) {
-            $data['accommodation'] = true;
+            //Verifications
+            $data['nbAdult'] = intval($data['nbAdult']);
+            $data['nbChild'] = intval($data['nbChild']);
+            if (array_key_exists('accommodation', $data)) {
+                $data['accommodation'] = true;
+            } else {
+                $data['accommodation'] = false;
+            }
+
+            $this->validate($request, [
+                'contactName' => 'required',
+                'nbAdult' => 'required|integer',
+                'nbChild' => 'required|integer',
+            ]);
+
+            Refugee::create($data);
         } else {
-            $data['accommodation'] = false;
+            if (session('isAdmin')) {
+                return view('refugees.add');
+            }
+            return redirect('/');
         }
-
-        $this->validate($request, [
-            'contactName' => 'required',
-            'nbAdult' => 'required|integer',
-            'nbChild' => 'required|integer',
-        ]);
-
-        Refugee::create($data);
     }
 
     public function removeFromList($id)
@@ -35,11 +42,15 @@ class RefugeeController extends Controller
         $refugee->delete();
     }
 
-    public function editInfos()
+    public function editInfos(Request $request, Refugee $refugeeGet)
     {
-        $refugee = Refugee::where('id', session('id'));
-        $refugee->update($request->except('_token'));
-        return redirect("/profile");
+        if ($request->isMethod('post')) {
+            $host = Refugee::where('id', $request->refId);
+            $host->update($request->except('_token', 'refId'));
+            return redirect("dashboard");
+        } elseif ($request->isMethod('get')) {
+            return view('refugees.editRef', ['ref' => $refugeeGet]);
+        }
     }
 
 

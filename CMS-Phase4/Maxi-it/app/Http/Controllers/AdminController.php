@@ -32,13 +32,16 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        $refugeeList = Refugee::all();
-        $houseList = House::all();
-        $hostList = Host::all();
-        return view('admin.dashboard',[
-            'refugeeList' => $refugeeList,
-            'houseList' => $houseList,
-            'hostList' => $hostList]);
+        if (session('isAdmin')) {
+            $refugeeList = Refugee::all();
+            $houseList = House::all();
+            $hostList = Host::all();
+            return view('admin.dashboard', [
+                'refugeeList' => $refugeeList,
+                'houseList' => $houseList,
+                'hostList' => $hostList]);
+        }
+        return redirect('/');
     }
 
 
@@ -46,7 +49,6 @@ class AdminController extends Controller
     {
         $request->session()->flush();
         return redirect("adminLogin");
-
     }
 
 

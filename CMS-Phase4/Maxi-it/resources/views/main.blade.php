@@ -64,8 +64,8 @@
          }
 
          .beug{
-             margin-top: 40px;
-             margin-bottom: 40px;
+             margin-top: 70px;
+             margin-bottom: -70px;
          }
 
          body {
@@ -96,6 +96,19 @@
          box-sizing: border-box;
          font-size: 14px;
          }
+         .alert {
+             color: #2d383b; 
+             width: 100%;
+             background-color: #ebb256;
+             text-align: center;
+             text-transform: uppercase;
+             list-style-type: none;
+             
+         }
+         ul
+{
+list-style-type: none;
+}
       </style>
     </style>
 </head>

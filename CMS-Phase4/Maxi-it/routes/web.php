@@ -52,6 +52,8 @@ Route::group(['middleware' => 'isAuth'],function() {
 
 Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
 Route::any('/adminLogin', 'AdminController@index')->name('index');
+Route::any('/editInfos/{refugeeGet?}', 'RefugeeController@editInfos');
+
 Route::post('/addHouse','HouseController@AddHouse')->name('addHouse');
 Route::get('/getAll','HouseController@getAll')->name('getAll');
 Route::get('/delete','HouseController@Delete')->name('delete');
@@ -66,4 +68,6 @@ Route::get('/host','HostController@index')->name('host');
 Route::post('/login', 'HostController@Login')->name('login');
 Route::post('/signup', 'HostController@SignUp')->name('signup');
 Route::get('/logout', 'HostController@LogOut')->name('logout');
-Route::post('/add_to_list', 'RefugeeController@addToList')->name('addToList');
+Route::any('/addtolist', 'RefugeeController@addToList')->name('addToList');
+Route::get('/deleteref/{id}','RefugeeController@removeFromList');
+Route::get('/logout', 'AdminController@LogOut')->name('logout');

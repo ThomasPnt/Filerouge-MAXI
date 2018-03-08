@@ -12,4 +12,5 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <button>edit</button>
     </form>
+    <a class="btn btn-primary" href="/dashboard">Back</a>
 </div>
