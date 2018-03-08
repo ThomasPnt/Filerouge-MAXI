@@ -123,7 +123,7 @@
                     <button type="submit">S'inscrire</button>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 </form>
-                <p class="message">Déjà inscrit ? <a href="index.php?action=login">Se connecter</a></p>
+                <p class="message">Déjà inscrit ? <a href="/login">Se connecter</a></p>
             </div>
         </div>
 @stop

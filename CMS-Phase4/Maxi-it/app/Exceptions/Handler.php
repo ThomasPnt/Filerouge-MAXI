@@ -3,7 +3,9 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -48,6 +50,15 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if($exception instanceof QueryException){
+            $errors = "Please fill all the form";
+            return redirect()->back()->withErrors($errors)->withInput();
+        }
+
+        if ($exception instanceof MethodNotAllowedHttpException)
+        {
+            abort(404);
+        }
         return parent::render($request, $exception);
     }
 }

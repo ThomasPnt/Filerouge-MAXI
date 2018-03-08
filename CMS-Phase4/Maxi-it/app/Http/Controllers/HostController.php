@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Host;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Mockery\Exception;
 
 class HostController extends Controller
 {
@@ -19,7 +21,8 @@ class HostController extends Controller
             echo "connected";
             return redirect("/");
         } else {
-            dd("Not Connected");
+            $errors = "try again";
+            return redirect()->back()->withErrors($errors)->withInput();
         }
     }
 

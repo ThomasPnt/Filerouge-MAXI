@@ -30,6 +30,10 @@ Route::get('/signup', function(){
     return view('signup');
 });
 
+Route::get('/404' , function(){
+    return view('error');
+});
+
 
 Route::group(['middleware' => 'isAuth'],function() {
 
