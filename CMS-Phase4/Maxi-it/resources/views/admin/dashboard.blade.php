@@ -103,6 +103,8 @@
                             <td>{{ $ref->nbAdult}}</td>
                             <td>{{ $ref->nbChild}}</td>
                             <td>{{ $ref->accommodation ? "yes" : "no"}}</td>
+                            <a href="/editInfos/{{$ref->id}}">edit</a>
+                            <a href="">remove</a>
                         </tr>
                     @endforeach
                     </tbody>

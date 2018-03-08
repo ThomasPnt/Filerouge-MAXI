@@ -57,6 +57,7 @@ Route::group(['middleware' => 'isAuth'],function() {
 
 Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
 Route::any('/adminLogin', 'AdminController@index')->name('index');
+Route::any('/editInfos/{refugeeGet?}', 'RefugeeController@editInfos');
 
 Route::post('/addHouse','HouseController@AddHouse')->name('addHouse');
 Route::get('/getAll','HouseController@getAll')->name('getAll');

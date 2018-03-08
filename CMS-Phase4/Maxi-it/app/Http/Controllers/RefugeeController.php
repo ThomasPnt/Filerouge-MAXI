@@ -35,11 +35,16 @@ class RefugeeController extends Controller
         $refugee->delete();
     }
 
-    public function editInfos()
+    public function editInfos(Request $request, Refugee $refugeeGet)
     {
-        $refugee = Refugee::where('id', session('id'));
-        $refugee->update($request->except('_token'));
-        return redirect("/profile");
+        if ($request->isMethod('post')) {
+            $host = Refugee::where('id', $request->refId);
+            $host->update($request->except('_token','refId'));
+            return redirect("dashboard");
+        }
+        elseif ($request->isMethod('get')) {
+            return view('refugees.editRef', ['ref' => $refugeeGet]);
+        }
     }
 
     public function index()
