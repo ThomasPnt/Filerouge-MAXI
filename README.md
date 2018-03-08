@@ -4,5 +4,5 @@ Bonjour! We are Maxi, a non-profit organisation based in Belgium that connects l
 ## Log in as administrator
 - Username : **Admin**
 - Password : **Test**
-- /adminLogin
+- Chemin : **/adminLogin**
 
