@@ -33,7 +33,6 @@ class RefugeeController extends Controller
                 return view('refugees.add');
             }
             return redirect('/');
-
         }
     }
 
