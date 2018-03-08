@@ -57,7 +57,7 @@ Route::any('/adminLogin', 'AdminController@index')->name('index');
 Route::post('/addHouse','HouseController@AddHouse')->name('addHouse');
 Route::get('/getAll','HouseController@getAll')->name('getAll');
 Route::get('/delete','HouseController@Delete')->name('delete');
-Route::post('/update','HouseController@Update')->name('update');
+Route::post('/updateHouse','HouseController@UpdateHouse')->name('updateHouse');
 Route::any('/link/{house?}', 'HouseController@link')->name('link');
 Route::get('/unlink/{house?}', 'HouseController@unlink')->name('unlink');
 

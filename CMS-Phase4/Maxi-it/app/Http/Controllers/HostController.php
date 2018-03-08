@@ -19,7 +19,7 @@ class HostController extends Controller
             echo "connected";
             return redirect("/");
         } else {
-            dd("joli");
+            dd("Not Connected");
         }
     }
 
