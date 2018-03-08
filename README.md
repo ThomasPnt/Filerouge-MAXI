@@ -1,5 +1,5 @@
 ![Maxi](https://i.imgur.com/TkbAg0e.png "Maxi")
-## Admin
+## Log in as administrator
 - Username : **Admin**
 - Password : **Test**
 
