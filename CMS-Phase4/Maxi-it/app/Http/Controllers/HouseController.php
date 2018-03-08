@@ -27,6 +27,7 @@ class HouseController extends Controller
         $house->type = $request['type'];
         try {
             $house->save();
+            return redirect("/");
         } catch (\Exception $e) {
             return redirect("/");
         }
@@ -42,14 +43,15 @@ class HouseController extends Controller
     {
         $host = Host::find(session('id'));
         $host->house()->delete();
+        return redirect("/profile");
     }
 
-    public function Update(Request $request, House $houseGet)
+    public function UpdateHouse(Request $request, House $houseGet)
     {
         if (session('id')) {
             $house = House::where('host_id', session('id'));
-            $house->free = !$house->free;
-            $house->save();
+            $house->update($request->except('_token'));
+            return redirect("/house");
         }
         elseif (session('isAdmin')) {
             if ($request->isMethod('post')) {
@@ -62,6 +64,9 @@ class HouseController extends Controller
             }
         }
     }
+
+    /* }*/
+
 
     public function link(Request $request, House $house)
     {

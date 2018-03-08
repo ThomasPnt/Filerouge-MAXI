@@ -37,7 +37,9 @@ class RefugeeController extends Controller
 
     public function editInfos()
     {
-        return "3";
+        $refugee = Refugee::where('id', session('id'));
+        $refugee->update($request->except('_token'));
+        return redirect("/profile");
     }
 
     public function index()

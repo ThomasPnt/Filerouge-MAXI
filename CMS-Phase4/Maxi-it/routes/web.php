@@ -10,8 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function(\Illuminate\Http\Request $request) {
+/*Route::get('/', function(\Illuminate\Http\Request $request) {
     echo Hash::make('test');
+});*/
+
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
+Route::get('/', function(){
+    return view('welcome');
 });
 
 Route::get('/login', function(){
@@ -22,11 +30,24 @@ Route::get('/signup', function(){
     return view('signup');
 });
 
-Route::get('/profile', function(){
-    return view('profile');
+Route::get('/404' , function(){
+    return view('error');
 });
 
 
+Route::group(['middleware' => 'isAuth'],function() {
+
+    Route::get('/profile', function(){
+        $infoProfile = DB::select('select * from hosts where id = :id',['id'=> session('id')]);
+        return view('profile', ['infoProfile' => $infoProfile]);
+    });
+
+    Route::get('/house', function(){
+        $haveHouse = DB::select('select * from houses where host_id = :id',['id'=> session('id')]);
+        return view('house',['haveHouse'=> $haveHouse]);
+    });
+
+});
 
 
 /*Route::view('/', 'refugees.add');*/
@@ -40,16 +61,13 @@ Route::any('/adminLogin', 'AdminController@index')->name('index');
 Route::post('/addHouse','HouseController@AddHouse')->name('addHouse');
 Route::get('/getAll','HouseController@getAll')->name('getAll');
 Route::get('/delete','HouseController@Delete')->name('delete');
-Route::any('/updateHouse/{houseGet?}','HouseController@Update')->name('update');
-Route::any('/updateHost/{hostGet?}','HostController@UpdateHost')->name('update');
+Route::any('/updateHouse/{houseGet?}','HouseController@UpdateHouse');
+Route::any('/updateHost/{hostGet?}','HostController@UpdateHost');
 Route::any('/link/{house?}', 'HouseController@link')->name('link');
 Route::get('/unlink/{house?}', 'HouseController@unlink')->name('unlink');
 
 Route::get('/host','HostController@index')->name('host');
 Route::post('/login', 'HostController@Login')->name('login');
 Route::post('/signup', 'HostController@SignUp')->name('signup');
-Route::get('/host','HostController@index')->name('host');
 Route::get('/logout', 'HostController@LogOut')->name('logout');
-Route::post('/updateHost', 'HostController@Update')->name('updateHost');
-
 Route::post('/add_to_list', 'RefugeeController@addToList')->name('addToList');

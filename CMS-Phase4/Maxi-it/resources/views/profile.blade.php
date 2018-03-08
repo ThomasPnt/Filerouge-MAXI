@@ -133,37 +133,13 @@
     <div class="login-page">
         <div class="form">
             <h1>Update Information Host</h1>
-            <form method="post" action="/update">
-                <input name="firstname" placeholder="Prénom" type="firstname"/>
-                <input name="lastname" placeholder="Nom" type="lastname"/>
-                <input name="email" placeholder="E-mail" type="email"/>
-                <input name="password" placeholder="Mot de passe" type="password"/>
+            <form method="post" action="/updateHost">
+                <input name="firstname" placeholder="Prénom" type="firstname" value={{$infoProfile[0]->firstname}}>
+                <input name="lastname" placeholder="Nom" type="lastname" value={{$infoProfile[0]->lastname}}>
+                <input name="email" placeholder="E-mail" type="email" value={{$infoProfile[0]->email}}>
                 <button type="submit">Valider</button>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </form>
-        </div>
-    </div>
-    <!-- N°2 -->
-    <div class="login-page">
-        <div class="form">
-            <h1>Add a House</h1>
-            <form method="post" action="/addHouse">
-                <input name="address" type="text" placeholder="Adresse">
-                <input name="nbRoom" type="number" placeholder="Nombre de pièce">
-                <select name="type">
-                    <option value="appartement">Appartement</option>
-                    <option value="maison">Maison</option>
-                </select>
-                <button type="submit">Valider</button>
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </form>
-        </div>
-    </div>
-    <!-- N°3 -->
-    <div class="login-page">
-        <div class="form">
-            <h1>Delete Button on Profil Host</h1>
-            <button type="submit"><a href="/delete">Delete</a></button>
         </div>
     </div>
 @stop

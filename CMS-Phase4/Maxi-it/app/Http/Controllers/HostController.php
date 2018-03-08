@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Host;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Mockery\Exception;
 
 class HostController extends Controller
 {
@@ -19,13 +21,15 @@ class HostController extends Controller
             echo "connected";
             return redirect("/");
         } else {
-            return 'Looser';
+            $errors = "try again";
+            return redirect()->back()->withErrors($errors)->withInput();
         }
     }
 
     public function LogOut(Request $request)
     {
         $request->session()->flush();
+        return redirect("/");
     }
 
     public function UpdateHost(Request $request, Host $hostGet)
@@ -59,5 +63,6 @@ class HostController extends Controller
         $validHost = $request->all();
         $validHost['password'] = Hash::make($validHost['password']);
         $host = Host::create($validHost);
+        return redirect("/login");
     }
 }
