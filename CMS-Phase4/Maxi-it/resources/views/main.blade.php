@@ -62,7 +62,12 @@
          color: #ebb256;
          text-decoration: none;
          }
-        
+
+         .beug{
+             margin-top: 40px;
+             margin-bottom: 40px;
+         }
+
          body {
          background: #272f31; /* fallback for old browsers */
          font-family: "Arial", sans-serif;
@@ -89,7 +94,7 @@
          margin: 0 0 15px;
          padding: 15px;
          box-sizing: border-box;
-         font-size: 14px;  
+         font-size: 14px;
          }
       </style>
     </style>
