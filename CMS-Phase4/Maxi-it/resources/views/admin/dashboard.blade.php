@@ -69,6 +69,8 @@
 <body>
 <div class="container">
     <h1 class="mt-4">Dashboard</h1>
+    <a class="btn btn-primary" href="/addtolist">Add Refugee</a>
+    <a class="btn btn-primary" href="/logout">Logout</a>
     <div class="mt-5">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
@@ -103,8 +105,10 @@
                             <td>{{ $ref->nbAdult}}</td>
                             <td>{{ $ref->nbChild}}</td>
                             <td>{{ $ref->accommodation ? "yes" : "no"}}</td>
-                            <a href="/editInfos/{{$ref->id}}">edit</a>
-                            <a href="">remove</a>
+                            <td>
+                                <a href="/editInfos/{{$ref->id}}">edit</a>
+                                <a href="/deleteref/{{$ref->id}}">remove</a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

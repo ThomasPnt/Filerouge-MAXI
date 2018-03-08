@@ -71,4 +71,6 @@ Route::get('/host','HostController@index')->name('host');
 Route::post('/login', 'HostController@Login')->name('login');
 Route::post('/signup', 'HostController@SignUp')->name('signup');
 Route::get('/logout', 'HostController@LogOut')->name('logout');
-Route::post('/add_to_list', 'RefugeeController@addToList')->name('addToList');
+Route::any('/addtolist', 'RefugeeController@addToList')->name('addToList');
+Route::get('/deleteref/{id}','RefugeeController@removeFromList');
+Route::get('/logout', 'AdminController@LogOut')->name('logout');
