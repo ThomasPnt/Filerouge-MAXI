@@ -103,6 +103,7 @@
              text-align: center;
              text-transform: uppercase;
              list-style-type: none;
+             
          }
          ul
 {
