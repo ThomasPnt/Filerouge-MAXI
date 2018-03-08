@@ -157,7 +157,8 @@
                             <td>{{ $host->lastname}}</td>
                             <td>{{ $host->email}}</td>
                             <td>
-                                <a href="">delete</a>
+                                <a href="/updateHost/{{$host->id}}">edit</a>
+                                <a href="">remove</a>
                             </td>
                         </tr>
                     @endforeach

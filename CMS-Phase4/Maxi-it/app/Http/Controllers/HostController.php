@@ -28,11 +28,23 @@ class HostController extends Controller
         $request->session()->flush();
     }
 
-    public function Update(Request $request)
+    public function UpdateHost(Request $request, Host $hostGet)
     {
-        echo "update";
-        $host = Host::where('id', session('id'));
-        $host->update($request->except('_token'));
+        if (session('id')) {
+            $host = Host::where('id', session('id'));
+            $host->update($request->except('_token'));
+            return redirect("/profile");
+        }
+        elseif (session('isAdmin')) {
+            if ($request->isMethod('post')) {
+                $host = Host::where('id', $request->hostId);
+                $host->update($request->except('_token','hostId'));
+                return redirect("dashboard");
+            }
+            elseif ($request->isMethod('get')) {
+                return view('hosts.editHostAdmin', ['host' => $hostGet]);
+            }
+        }
     }
 
     public function SignUp(Request $request)

@@ -41,6 +41,7 @@ Route::post('/addHouse','HouseController@AddHouse')->name('addHouse');
 Route::get('/getAll','HouseController@getAll')->name('getAll');
 Route::get('/delete','HouseController@Delete')->name('delete');
 Route::any('/updateHouse/{houseGet?}','HouseController@Update')->name('update');
+Route::any('/updateHost/{hostGet?}','HostController@UpdateHost')->name('update');
 Route::any('/link/{house?}', 'HouseController@link')->name('link');
 Route::get('/unlink/{house?}', 'HouseController@unlink')->name('unlink');
 

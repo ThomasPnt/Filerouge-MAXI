@@ -44,26 +44,23 @@ class HouseController extends Controller
         $host->house()->delete();
     }
 
-    public function Update(Request $request,House $houseGet)
+    public function Update(Request $request, House $houseGet)
     {
-        if (!session('isAdmin')) {
+        if (session('id')) {
             $house = House::where('host_id', session('id'));
             $house->free = !$house->free;
             $house->save();
         }
-        elseif (session('isAdmin')){
+        elseif (session('isAdmin')) {
             if ($request->isMethod('post')) {
-                echo "tyest";
+                $house = House::find($request->houseId);
+                $house->update($request->except('_token', 'houseId'));
+                return redirect("dashboard");
             }
-            elseif($request->isMethod('get')) {
-                return view('houses.editAdmin', ['house' => $houseGet]);
+            elseif ($request->isMethod('get')) {
+                return view('houses.editHouseAdmin', ['house' => $houseGet]);
             }
-
         }
-        $house = House::find($request->houseId);
-        $house->fill($request->except('_token','houseId'))->save();
-        return redirect("dashboard");
-
     }
 
     public function link(Request $request, House $house)
@@ -103,3 +100,4 @@ class HouseController extends Controller
 
     }
 }
+
