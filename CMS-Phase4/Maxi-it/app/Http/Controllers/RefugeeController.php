@@ -42,9 +42,5 @@ class RefugeeController extends Controller
         return redirect("/profile");
     }
 
-    public function index()
-    {
-        return "4";
-    }
 
 }

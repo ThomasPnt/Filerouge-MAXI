@@ -128,7 +128,7 @@
                             <td>{{ $house->free ? "yes" : "no"}}</td>
                             <td>
                                 <a href="/updateHouse/{{$house->id}}">edit</a>
-                                <a href="">remove</a>
+                                <a href="/deleteHouse/{{$house->id}}">remove</a>
                                 @if ($house->free)
                                     <a href="link/{{$house->id}}">link</a>
                                 @else
@@ -158,7 +158,7 @@
                             <td>{{ $host->email}}</td>
                             <td>
                                 <a href="/updateHost/{{$host->id}}">edit</a>
-                                <a href="">remove</a>
+                                <a href="deleteHost/{{$host->id}}">remove</a>
                             </td>
                         </tr>
                     @endforeach

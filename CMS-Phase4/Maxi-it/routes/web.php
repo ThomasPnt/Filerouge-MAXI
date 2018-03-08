@@ -50,20 +50,16 @@ Route::group(['middleware' => 'isAuth'],function() {
 });
 
 
-/*Route::view('/', 'refugees.add');*/
-/*Route::post('/', function(\Illuminate\Http\Request $request) {
-    var_dump($request->all());
-});*/
-
 Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
 Route::any('/adminLogin', 'AdminController@index')->name('index');
-
 Route::post('/addHouse','HouseController@AddHouse')->name('addHouse');
 Route::get('/getAll','HouseController@getAll')->name('getAll');
 Route::get('/delete','HouseController@Delete')->name('delete');
 Route::any('/updateHouse/{houseGet?}','HouseController@UpdateHouse');
 Route::any('/updateHost/{hostGet?}','HostController@UpdateHost');
 Route::any('/link/{house?}', 'HouseController@link')->name('link');
+Route::get('/deleteHouse/{houseGet?}','HouseController@Delete')->name('delete');
+Route::get('/deleteHost/{hostGet?}','HostController@Delete')->name('delete');
 Route::get('/unlink/{house?}', 'HouseController@unlink')->name('unlink');
 
 Route::get('/host','HostController@index')->name('host');

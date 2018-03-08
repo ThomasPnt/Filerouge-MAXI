@@ -65,4 +65,17 @@ class HostController extends Controller
         $host = Host::create($validHost);
         return redirect("/login");
     }
+
+    public function Delete(Host $hostGet)
+    {
+        if (session('id')) {
+            $host = Host::find(session('id'));
+            $host->house()->delete();
+            return redirect("/profile");
+        } elseif (session('isAdmin')) {
+            $hostGet->delete();
+            return redirect("/dashboard");
+        }
+    }
+
 }
