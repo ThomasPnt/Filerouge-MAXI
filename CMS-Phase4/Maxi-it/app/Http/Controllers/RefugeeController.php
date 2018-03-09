@@ -53,9 +53,5 @@ class RefugeeController extends Controller
         }
     }
 
-    public function index()
-    {
-        return "4";
-    }
 
 }
