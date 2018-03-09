@@ -43,8 +43,8 @@ Route::group(['middleware' => 'isAuth'],function() {
     });
 
     Route::get('/house', function(){
-        $haveHouse = DB::select('select * from houses where host_id = :id',['id'=> session('id')]);
-        return view('house',['haveHouse'=> $haveHouse]);
+        $house = DB::table('houses')->where('host_id', session('id'))->first();
+        return view('house', compact('house'));
     });
 
 });
